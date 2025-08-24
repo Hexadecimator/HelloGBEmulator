@@ -61,11 +61,36 @@ https://gbdev.io/pandocs/
 
 */
 
-
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
+#include <fstream>
+#include <bitset>
+#include <vector>
 
+using namespace std;
 
-int main()
-{
-	std::cout << "Starting\n";
+int main() {
+    
+    streampos size;
+    int length = 0;
+
+    ifstream file("../tetris.gb", ios::in | ios::binary);
+
+    if (file.is_open())
+    {
+        size = file.tellg();
+
+        vector<unsigned char> buffer(istreambuf_iterator<char>(file), {});
+
+        for (unsigned char i : buffer) {
+            cout << unsigned(i) << " ";
+        }
+
+    }
+    else cout << "Unable to open file";
+
+    cout << length;
+    return 0;
+
 }
