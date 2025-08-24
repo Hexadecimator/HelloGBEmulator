@@ -47,6 +47,18 @@ https://gbdev.io/pandocs/
 
     The memory at 0100-014F contains the cartridge header
 
+    ====================
+    Registers
+    ====================
+    16-bit	Hi	Lo	Name/Function
+    AF	    A	-	Accumulator & Flags
+    BC	    B	C	BC
+    DE	    D	E	DE
+    HL	    H	L	HL
+    SP	    -	-	Stack Pointer
+    PC	    -	-	Program Counter/Pointer
+
+
 */
 
 #include <stdio.h>
