@@ -74,6 +74,7 @@ int main() {
     
     const int nameBuffer = 308;
     streampos size;
+
     int length = 0;
 
     ifstream file("../blue.gb", ios::in | ios::binary);
