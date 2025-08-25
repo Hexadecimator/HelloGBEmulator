@@ -72,7 +72,7 @@ using namespace std;
 
 int main() {
     
-    streampos size;
+    streampos size; 
     int length = 0;
 
     ifstream file("../tetris.gb", ios::in | ios::binary);
