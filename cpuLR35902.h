@@ -5,11 +5,11 @@
 
 class Bus;
 
-class cpuLR25902
+class cpuLR35902
 {
 public:
-	cpuLR25902();
-	~cpuLR25902();
+	cpuLR35902();
+	~cpuLR35902();
 
 public:
 	// TODO:
@@ -38,7 +38,8 @@ public:
 	void ConnectBus(Bus* n) { bus = n; }
 
 	// lower 8 bits of AF register
-	enum FLAGS25902
+	// upper nibble is the flags, lower nibble is always 0x0
+	enum FLAGS35902
 	{
 		Z = (1 << 7), // Zero flag
 		N = (1 << 6), // Subtraction flag (BCD)
@@ -56,8 +57,8 @@ private:
 	struct INSTRUCTION
 	{
 		std::string name;
-		uint8_t (cpuLR25902::* operate)(void) = nullptr;
-		uint8_t (cpuLR25902::* addrmode)(void) = nullptr;
+		uint8_t (cpuLR35902::* operate)(void) = nullptr;
+		uint8_t (cpuLR35902::* addrmode)(void) = nullptr;
 		uint8_t cycles = 0;
 	};
 

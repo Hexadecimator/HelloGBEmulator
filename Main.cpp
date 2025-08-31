@@ -4,7 +4,7 @@
 
 https://gbdev.io/pandocs/
 
-    CPU - 8-bit Sharp LR25902 (similar to the Z80 processor)
+    CPU - 8-bit Sharp LR35902 (similar to the Z80 processor)
     Clock Speed - 4.194304MHz (4.295454MHz for SGB, max. 8.4MHz for CGB)
     Work RAM - 8K Byte (32K Byte for CGB)
     Video RAM - 8K Byte (16K Byte for CGB)
