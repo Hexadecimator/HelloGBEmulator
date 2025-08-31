@@ -1,5 +1,5 @@
-#include "cpuLR35902.h"
-#include "Bus.h"
+#include "headers/cpuLR35902.h"
+#include "headers/Bus.h"
 
 cpuLR35902::cpuLR35902()
 {
