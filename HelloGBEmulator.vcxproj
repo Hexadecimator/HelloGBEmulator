@@ -124,12 +124,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Bus.cpp" />
-    <ClCompile Include="cpuLR25902.cpp" />
+    <ClCompile Include="cpuLR35902.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bus.h" />
-    <ClInclude Include="cpuLR25902.h" />
+    <ClInclude Include="cpuLR35902.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="NotesAndIdeas.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
