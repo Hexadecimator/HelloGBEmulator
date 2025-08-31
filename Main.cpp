@@ -4,7 +4,7 @@
 
 https://gbdev.io/pandocs/
 
-    CPU - 8-bit Sharp LR25902 (similar to the Z80 processor)
+    CPU - 8-bit Sharp LR35902 (similar to the Z80 processor)
     Clock Speed - 4.194304MHz (4.295454MHz for SGB, max. 8.4MHz for CGB)
     Work RAM - 8K Byte (32K Byte for CGB)
     Video RAM - 8K Byte (16K Byte for CGB)
@@ -61,11 +61,46 @@ https://gbdev.io/pandocs/
 
 */
 
-
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
+#include <fstream>
+#include <bitset>
+#include <vector>
 
+using namespace std;
 
-int main()
-{
-	std::cout << "Starting\n";
+int main() {
+    
+    const int nameBuffer = 308;
+    streampos size;
+
+    int length = 0;
+
+    ifstream file("../blue.gb", ios::in | ios::binary);
+
+    if (file.is_open())
+    {
+        size = file.tellg();
+
+        vector<unsigned char> buffer(istreambuf_iterator<char>(file), {});
+
+        /*
+        for (unsigned char i : buffer) {
+            cout << unsigned(i) << " ";
+        }
+        */
+
+        cout << "Title Name: ";
+
+        for (int i = 0; i < 16; i++) {
+            cout << (buffer[nameBuffer+i]);
+        }
+
+    }
+
+    else cout << "Unable to open file";
+
+    return 0;
+
 }
