@@ -648,3 +648,293 @@ Prefix CB Table
 0xFE 
 0xFF 
 -- 255
+
+
+
+
+
+
+
+
+
+====== ALL NON-CB OPCODES SORTED BY NAME
+====== (to see how many different versions of the same opcode exist)
+NOP (1, 4)
+------
+ADC A,(HL) (1, 8) [Z0HC]
+ADC A,A (1, 4) [Z0HC]
+ADC A,B (1, 4) [Z0HC]
+ADC A,C (1, 4) [Z0HC]
+ADC A,D (1, 4) [Z0HC]
+ADC A,d8 (2, 8) [Z0HC]
+ADC A,E (1, 4) [Z0HC]
+ADC A,H (1, 4) [Z0HC]
+ADC A,L (1, 4) [Z0HC]
+------
+ADD A,(HL) (1, 8) [Z0HC]
+ADD A,A (1 , 4) [Z0HC]
+ADD A,B (1, 4) [Z0HC]
+ADD A,C (1, 4) [Z0HC]
+ADD A,D (1, 4) [Z0HC]
+ADD A,d8 (2, 8) [Z0HC]
+ADD A,E (1, 4) [Z0HC]
+ADD A,H (1, 4) [Z0HC]
+ADD A,L (1, 4) [Z0HC]
+ADD HL,BC (1, 8) [-0HC]
+ADD HL,DE (1, 8) [-0HC]
+ADD HL,HL (1, 8) [-0HC]
+ADD HL,SP (1, 8) [-0HC]
+ADD SP,r8 (2, 16) [00HC]
+------
+AND (HL) (1, 8) [Z010]
+AND A (1, 4) [Z010]
+AND B (1, 4) [Z010]
+AND C (1, 4) [Z010]
+AND D (1, 4) [Z010]
+AND d8 (2, 8) [Z010]
+AND E (1, 4) [Z010]
+AND H (1, 4) [Z010]
+AND L (1, 4) [Z010]
+------
+CALL a16 (3, 24)
+CALL C,a16 (3, 24/12)
+CALL NC,a16 (3, 24/12)
+CALL NZ,a16 (3, 24/12)
+CALL Z,a16 (3, 24/12)
+------
+CCF (1, 4) [-00C]
+------
+CP (HL) (1, 8) [Z1HC]
+CP A (1, 4) [Z1HC]
+CP B (1, 4) [Z1HC]
+CP C (1, 4) [Z1HC]
+CP D (1, 4) [Z1HC]
+CP d8 (2, 8) [Z1HC]
+CP E (1, 4) [Z1HC]
+CP H (1, 4) [Z1HC]
+CP L (1, 4) [Z1HC]
+------
+CPL (1, 4) [-11-]
+------
+DAA (1, 4) [Z-0C]
+------
+DEC (HL) (1, 12) [Z1H-]
+DEC A (1, 4) [Z1H-]
+DEC B (1, 4) [Z1H-]
+DEC BC (1, 8)
+DEC C (1, 4) [Z1H-]
+DEC D (1, 4) [Z1H-]
+DEC DE (1, 8)
+DEC E (1, 4) [Z1H-]
+DEC H (1, 4) [Z1H-]
+DEC HL (1, 8)
+DEC L (1, 4) [Z1H-]
+DEC SP (1, 8)
+------
+DI (1, 4)
+------
+EI (1, 4)
+------
+HALT (1, 4)
+------
+INC (HL) (1, 12) [Z0H-]
+INC A (1, 4) [Z0H-]
+INC B (1, 4) [Z0H-]
+INC BC (1, 8)
+INC C (1, 4) [Z0H-]
+INC D (1, 4) [Z0H-]
+INC DE (1, 8) 
+INC E (1, 4) [Z0H-]
+INC H (1, 4) [Z0H-]
+INC HL (1, 8)
+INC L (1, 4) [Z0H-]
+INC SP (1, 8)
+------
+JP (HL) (1, 4)
+JP a16 (3, 16)
+JP C,a16 (3, 16/12)
+JP NC,a16 (3, 16/12)
+JP NZ,a16 (3, 16/12)
+JP Z,a16 (3, 16/12)
+------
+JR C,r8 (2, 12/8)
+JR NC,r8 (2, 12/8)
+JR NZ,r8 (2, 12/8)
+JR r8 (2, 12)
+JR Z,r8 (2, 12/8)
+------
+LD (a16), SP (3, 20) 
+LD (a16),A (3, 16)
+LD (BC),A (1, 8)
+LD (C),A (2, 8)
+LD (DE),A (1, 8)
+LD (HL),A (1, 8)
+LD (HL-),A (1, 8)          AKA: LD (HLD),A or LDD (HL),A
+LD (HL),B (1, 8)
+LD (HL),C (1, 8)
+LD (HL),D (1, 8)
+LD (HL),d8 (2, 12)
+LD (HL),E (1, 8)
+LD (HL),H (1, 8)
+LD (HL),L (1, 8)
+LD (HL+),A (1, 8)         AKA: LD (HLI),A or LDI (HL),A
+LD A,(a16) (3, 16)
+LD A,(BC) (1, 8)
+LD A,(C) (2, 8)              AKA: LD A,($FF00+C)
+LD A,(DE) (1, 8)
+LD A,(HL) (1, 8)
+LD A,(HL-) (1, 8)          AKA: LD A,(HLD) or LDD A,(HL)
+LD A,(HL+) (1, 8)         AKA: LD A,(HLI) or LDI A,(HL)
+LD A,A (1, 4)
+LD A,B (1, 4)
+LD A,C (1 ,4)
+LD A,D (1, 4)
+LD A,d8 (2, 8)
+LD A,E (1, 4)
+LD A,H (1, 4)
+LD A,L (1 ,4)
+LD B,(HL) (1, 8)
+LD B,A (1, 4)
+LD B,B (1, 4)
+LD B,C (1, 4)
+LD B,D (1, 4)
+LD B,d8 (2, 8)
+LD B,E (1, 4)
+LD B,H (1, 4)
+LD B,L (1, 4)
+LD BC,d16 (3, 12)
+LD C,(HL) (1, 8)
+LD C,A (1, 4)
+LD C,B (1, 4)
+LD C,C (1, 4)
+LD C,D (1, 4)
+LD C,d8 (2, 8)
+LD C,E (1, 4)
+LD C,H (1, 4)
+LD C,L (1, 4)
+LD D,(HL) (1, 8)
+LD D,A (1, 4)
+LD D,B (1, 4)
+LD D,C (1, 4)
+LD D,D (1, 4)
+LD D,d8 (2, 8)
+LD D,E (1, 4)
+LD D,H (1, 4)
+LD D,L (1, 4)
+LD DE,d16 (3, 12)
+LD E,(HL) (1, 4)
+LD E,A (1, 4)
+LD E,B (1, 4)
+LD E,C (1, 4)
+LD E,D (1, 4)
+LD E,d8 (2, 8)
+LD E,E (1, 4)
+LD E,H (1, 4)
+LD E,L (1, 4)
+LD H,(HL) (1, 8)
+LD H,A (1, 4)
+LD H,B (1, 4)
+LD H,C (1, 4)
+LD H,D (1, 4)
+LD H,d8 (2, 8)
+LD H,E (1, 4)
+LD H,H (1, 4)
+LD H,L (1, 4)
+LD HL,d16 (3, 12)
+LD HL,SP+r8 (2, 12) [00HC]   AKA: LDHL SP,r8
+LD L,(HL) (1, 8)
+LD L,A (1, 4)
+LD L,B (1, 4)
+LD L,C (1, 4)
+LD L,D (1, 4)
+LD L,d8 (2, 8)
+LD L,E (1, 4)
+LD L,H (1, 4)
+LD L,L (1, 4)
+LD SP,d16 (3, 12)
+LD SP,HL (1, 8)
+------
+LDH (a8),A (2, 12)           AKA: LD ($FF00+a8),A
+LDH A,(a8) (2, 12)           AKA: LD A,($FF00+a8)
+------
+OR (HL) (1, 8) [Z000]
+OR A (1, 4) [Z000]
+OR B (1, 4) [Z000]
+OR C (1, 4) [Z000]
+OR D (1, 4) [Z000]
+OR d8 (2, 8) [Z000]
+OR E (1, 4) [Z000]
+OR H (1, 4) [Z000]
+OR L (1, 4) [Z000]
+------
+POP AF (1, 12) [ZNHC]
+POP BC (1, 12)
+POP DE (1, 12)
+POP HL (1, 12)
+------
+PREFIX CB (1, 4)
+------
+PUSH AF (1, 16)
+PUSH BC (1, 16)
+PUSH DE (1, 16)
+PUSH HL (1, 16)
+------
+RET (1, 16)
+RET C (1, 20/8)
+RET NC (1, 20/8)
+RET NZ (1, 20/8)
+RET Z (1, 20/8)
+------
+RETI (1, 16)
+------
+RLA (1, 4) [000C]
+------
+RLCA (1,4) [000C]
+------
+RRA (1, 4) [000C]
+------
+RRCA (1, 4) [000C]
+------
+RST 00H (1, 16)
+RST 08H (1, 16)
+RST 10H (1, 16)
+RST 18H (1, 16)
+RST 20H (1, 16)
+RST 28H (1, 16)
+RST 30H (1, 16)
+RST 38H (1, 16)
+------
+SBC A,(HL) (1, 8) [Z1HC]
+SBC A,A (1, 4) [Z1HC]
+SBC A,B (1, 4) [Z1HC]
+SBC A,C (1, 4) [Z1HC]
+SBC A,D (1, 4) [Z1HC]
+SBC A,d8 (2, 8) [Z1HC]
+SBC A,E (1, 4) [Z1HC]
+SBC A,H (1, 4) [Z1HC]
+SBC A,L (1, 4) [Z1HC]
+------
+SCF (1, 4) [-001]
+------
+STOP 0 (2, 4)
+------
+SUB (HL) (1, 8) [Z1HC]
+SUB A (1, 4) [Z1HC]
+SUB B (1, 4) [Z1HC]
+SUB C (1, 4) [Z1HC]
+SUB D (1, 4) [Z1HC]
+SUB d8 (2, 8) [Z1HC]
+SUB E (1, 4) [Z1HC]
+SUB H (1, 4) [Z1HC]
+SUB L (1, 4) [Z1HC]
+------
+XOR (HL) (1, 8) [Z000]
+XOR A (1, 4) [Z000]
+XOR B (1, 4) [Z000]
+XOR C (1, 4) [Z000]
+XOR D (1, 4) [Z000]
+XOR d8 (2, 8) [Z000]
+XOR E (1, 4) [Z000]
+XOR H (1, 4) [Z000]
+XOR L (1, 4) [Z000]
+------
