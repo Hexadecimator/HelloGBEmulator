@@ -89,6 +89,12 @@ private:
 	std::vector<INSTRUCTION> lookup;
 
 private:
+	// ===== ADDRESSING MODES =====
+	uint8_t IMP();
+	uint8_t IMM();
+	uint8_t ABS();
+
+private:
 	// ===== CPU INSTRUCTIONS =====
 	uint8_t ADC();      uint8_t HALT();		uint8_t RETI();
 	uint8_t ADD();	 	uint8_t INC();		uint8_t RLA();
