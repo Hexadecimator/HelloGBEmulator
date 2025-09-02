@@ -73,8 +73,16 @@ private:
 	{
 		std::string name;
 		uint8_t (cpuLR35902::* operate)(void) = nullptr;
+		
 		// it doesn't seem like GB has multiple addressing modes? keeping for now just in case
-		//uint8_t (cpuLR35902::* addrmode)(void) = nullptr; 
+		// UPDATE: THERE ARE DIFFERENT ADDRESSING MODES, AT LEAST 2 SO FAR:
+		// Immediate d8: Immediate 8 bit data
+		// Immediate d16: Immediate 16 bit data
+		// Implied: No additional data is required, just simple stuff like changing a status bit
+		// Absolute: A full 16 bit address is loaded and used
+		// 
+		//uint8_t (cpuLR35902::* addrmode)(void) = nullptr; // TODO TODO TODO ADD THIS TO lookup TODO TODO TODO
+		
 		uint8_t cycles = 0;
 	};
 
