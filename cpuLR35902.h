@@ -32,6 +32,53 @@ public:
 	uint16_t pc     = 0x0000; // program counter
 	uint8_t  status = 0x00; // status register
 	
+public:
+	// Get/Set A Register
+	uint8_t GetRegA()
+	{
+		uint8_t reg = 0x00 | (af >> 8);
+		return reg;
+	}
+
+	void SetRegA(uint8_t val)
+	{
+		uint16_t tmp = 0x0000 | val;
+		tmp = tmp << 8;
+		af = 0x00F0 & af;
+		af |= tmp;
+	}
+
+	// Get/Set B Register
+	uint8_t GetRegB()
+	{
+		uint16_t reg = (0xFF00 & bc);
+		reg = reg >> 8;
+		uint8_t ret = 0x00 | reg;
+		return ret;
+	}
+
+	void SetRegB(uint8_t val)
+	{
+		uint16_t reg = 0x0000 | (val);
+		reg = reg << 8;
+		bc = 0x00FF & bc;
+		bc = bc | reg;
+	}
+
+	// Get/Set C Register
+	uint8_t GetRegC()
+	{
+		uint16_t reg = (0x00FF & bc);
+		uint8_t ret = 0x00 | reg;
+		return ret;
+	}
+
+	void SetRegC(uint8_t val)
+	{
+		uint16_t reg = 0x0000 | (val);
+		bc = 0xFF00 & bc;
+		bc = bc | reg;
+	}
 
 	void reset();
 	void irq();
@@ -107,12 +154,12 @@ private:
 	uint8_t DEC();	 	uint8_t POP();		uint8_t STOP();
 	uint8_t DI();	 	uint8_t PUSH();		uint8_t SUB();
 	uint8_t EI();	 	uint8_t RET();		uint8_t XOR();
+	uint8_t PREFIX_CB(); // ??? This one is definitely important, how to handle this?
+	uint8_t XXX(); // catch for all undefined opcodes
 
-	// IDK about these 3:
+	// IDK about these 2:
 	uint8_t JR_r8(); // ????????????????
 	uint8_t OR_d8(); // ????????????????
-	uint8_t PREFIX_CB(); // ??? This one is definitely important, how to handle this?
 	
-	uint8_t XXX(); // catch all for "???" instructions
 
 };
