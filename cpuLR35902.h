@@ -19,7 +19,9 @@ public:
 	// CPU flags
 	// CPU instructions
 
-	// ===== REGISTERS =====
+	//-o------------------------------------------------------------------o
+	// |   REGISTER DEFINITIONS                                           |
+	//-o------------------------------------------------------------------o
 	// Accumulator and flags
 	uint16_t af     = 0x0000; 
 	// The below 3 registers are general purpose 16 bit registers, 
@@ -33,13 +35,18 @@ public:
 	uint8_t  status = 0x00; // status register
 	
 public:
-	// Get/Set A Register
+	//-o------------------------------------------------------------------o
+	// |   GET A REGISTER                                                 |
+	//-o------------------------------------------------------------------o
 	uint8_t GetRegA()
 	{
 		uint8_t reg = 0x00 | (af >> 8);
 		return reg;
 	}
 
+	//-o------------------------------------------------------------------o
+	// |   SET A REGISTER                                                 |
+	//-o------------------------------------------------------------------o
 	void SetRegA(uint8_t val)
 	{
 		uint16_t tmp = 0x0000 | val;
@@ -48,7 +55,9 @@ public:
 		af |= tmp;
 	}
 
-	// Get/Set B Register
+	//-o------------------------------------------------------------------o
+	// |   GET B REGISTER                                                 |
+	//-o------------------------------------------------------------------o
 	uint8_t GetRegB()
 	{
 		uint16_t reg = (0xFF00 & bc);
@@ -57,6 +66,9 @@ public:
 		return ret;
 	}
 
+	//-o------------------------------------------------------------------o
+	// |   SET B REGISTER                                                 |
+	//-o------------------------------------------------------------------o
 	void SetRegB(uint8_t val)
 	{
 		uint16_t reg = 0x0000 | (val);
@@ -65,7 +77,9 @@ public:
 		bc = bc | reg;
 	}
 
-	// Get/Set C Register
+	//-o------------------------------------------------------------------o
+	// |   GET C REGISTER                                                 |
+	//-o------------------------------------------------------------------o
 	uint8_t GetRegC()
 	{
 		uint16_t reg = (0x00FF & bc);
@@ -73,12 +87,17 @@ public:
 		return ret;
 	}
 
+	//-o------------------------------------------------------------------o
+	// |   SET C REGISTER                                                 |
+	//-o------------------------------------------------------------------o
 	void SetRegC(uint8_t val)
 	{
 		uint16_t reg = 0x0000 | (val);
 		bc = 0xFF00 & bc;
 		bc = bc | reg;
 	}
+
+	// TODO: DE and HL GET/SETS will just be copies of BC GET/SETS
 
 	void reset();
 	void irq();
@@ -87,8 +106,9 @@ public:
 
 	void ConnectBus(Bus* n) { bus = n; }
 
-	// lower 8 bits of AF register
-	// upper nibble is the flags, lower nibble is always 0x0
+	//-o------------------------------------------------------------------o
+	// |   LOWER 8 BITS OF AF REGISTER                                    |
+	//-o------------------------------------------------------------------o
 	enum FLAGS35902
 	{
 		C = (1 << 4), // Carry flag

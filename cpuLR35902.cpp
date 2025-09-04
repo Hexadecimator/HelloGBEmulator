@@ -52,7 +52,9 @@ uint8_t cpuLR35902::fetch()
 	return fetched;
 }
 
-// NOP
+//-o------------------------------------------------------------------o
+// |   OPCODE: NOP (0x00)                                             |
+//-o------------------------------------------------------------------o
 uint8_t cpuLR35902::OP_00()
 {
 	// TODO: Game compatibility may necessitate handling different
