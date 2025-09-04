@@ -7,7 +7,6 @@ cpuLR35902::cpuLR35902()
 	lookup =
 	{
 		// TODO: Some cycles are in the form "12/8" or similar... figure this out. Probably handle this in the op code's function
-		// only doing 1 row for now to figure things out
 		{"NOP", &a::OP_00, 4},{"LD BC,d16", &a::OP_01, 12},{"LD (BC),A", &a::OP_02, 8},{"INC BC", &a::OP_03, 8},{"INC B", &a::OP_04, 4},{"DEC B", &a::OP_05, 4},{"LD B,d8", &a::OP_06, 8},{"RLCA", &a::OP_07, 4},{"LD (a16), SP", &a::OP_08, 20},{"ADD HL,BC", &a::OP_09, 8},{"LD A,(BC)", &a::OP_0A, 8},{"DEC BC", &a::OP_0B, 8},{"INC C", &a::OP_0C, 4},{"DEC C", &a::OP_0D, 4},{"LD C,d8", &a::OP_0E, 8},{"RRCA", &a::OP_0F, 4},
 		{"STOP", &a::OP_10, 4},{"LD DE,d16", &a::OP_11, 12},{"LD (DE),A", &a::OP_12, 8},{"INC DE", &a::OP_13, 8},{"INC D", &a::OP_14, 4},{"DEC D", &a::OP_15, 4},{"LD D,d8", &a::OP_16, 8},{"RLA", &a::OP_17, 4},{"JR r8", &a::OP_18, 12},{"ADD HL,DE", &a::OP_19, 8},{"LD A,(DE)", &a::OP_1A, 8},{"DEC DE", &a::OP_1B, 8},{"INC E", &a::OP_1C, 4},{"DEC E", &a::OP_1D, 4},{"LD E,d8", &a::OP_1E, 8},{"RRA", &a::OP_1F, 4},
 		{"JR NZ,r8", &a::OP_20, 12/8},{"LD HL,d16", &a::OP_21, 12},{"LD (HL+),A", &a::OP_22, 8},{"INC HL", &a::OP_23, 8},{"INC H", &a::OP_24, 4},{"DEC H", &a::OP_25, 4},{"LD H,d8", &a::OP_26, 8},{"DAA", &a::OP_27, 4},{"JR Z,r8", &a::OP_28, 12/8},{"ADD HL,HL", &a::OP_29, 8},{"LD A,(HL+)", &a::OP_2A, 8},{"DEC HL", &a::OP_2B, 8},{"INC L", &a::OP_2C, 4},{"DEC L", &a::OP_2D, 4},{"LD L,d8", &a::OP_2E, 8},{"CPL", &a::OP_2F, 4},
@@ -51,6 +50,8 @@ uint8_t cpuLR35902::fetch()
 
 	return fetched;
 }
+
+// TODO: QUESTION: SHOULD WE MOVE THESE FUNCTION DEFINITIONS TO THEIR OWN FILE FOR ORGANIZATIONAL REASONS?
 
 //-o------------------------------------------------------------------o
 // |   OPCODE: NOP (0x00)                                             |
