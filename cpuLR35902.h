@@ -136,36 +136,16 @@ private:
 	std::vector<INSTRUCTION> lookup;
 
 private:
-	// ===== ADDRESSING MODES =====
+	//-o------------------------------------------------------------------o
+	// |   ADDRESSING MODES                                               |
+	//-o------------------------------------------------------------------o
 	uint8_t IMP();
 	uint8_t IMM();
 	uint8_t ABS();
 
 private:
-	
-	// !!!!!!!!!!!!!!!!!!!!! OLDDDDDDDDD METHOD !!!!!!!!!!!!!!!!!!!!!!!!!
-	// ===== CPU INSTRUCTIONS =====
-	//uint8_t ADC();      uint8_t HALT();		uint8_t RETI();
-	//uint8_t ADD();	 	uint8_t INC();		uint8_t RLA();
-	//uint8_t AND();	 	uint8_t JP();		uint8_t RLCA();
-	//uint8_t CALL();	 	uint8_t JR();		uint8_t RRA();
-	//uint8_t CCF();	 	uint8_t LD();		uint8_t RRCA();
-	//uint8_t CP();	 	uint8_t LDH();		uint8_t RST();
-	//uint8_t CPL();	 	uint8_t NOP();		uint8_t SBC();
-	//uint8_t DAA();	 	uint8_t OR();		uint8_t SCF();
-	//uint8_t DEC();	 	uint8_t POP();		uint8_t STOP();
-	//uint8_t DI();	 	uint8_t PUSH();		uint8_t SUB();
-	//uint8_t EI();	 	uint8_t RET();		uint8_t XOR();
-	//uint8_t PREFIX_CB(); // ??? This one is definitely important, how to handle this?
-	//uint8_t XXX(); // catch for all undefined opcodes
-
-	//// IDK about these 2:
-	//uint8_t JR_r8(); // ????????????????
-	//uint8_t OR_d8(); // ????????????????
-	
-
 	//-o------------------------------------------------------------------o
-	// |   STANDARD OPCODES                                                     |
+	// |   STANDARD OPCODES                                               |
 	//-o------------------------------------------------------------------o
 	uint8_t OP_00(); uint8_t OP_10(); uint8_t OP_20(); uint8_t OP_30();	uint8_t OP_40(); uint8_t OP_50(); uint8_t OP_60(); uint8_t OP_70();
 	uint8_t OP_01(); uint8_t OP_11(); uint8_t OP_21(); uint8_t OP_31();	uint8_t OP_41(); uint8_t OP_51(); uint8_t OP_61(); uint8_t OP_71();
@@ -183,8 +163,7 @@ private:
 	uint8_t OP_0D(); uint8_t OP_1D(); uint8_t OP_2D(); uint8_t OP_3D();	uint8_t OP_4D(); uint8_t OP_5D(); uint8_t OP_6D(); uint8_t OP_7D();
 	uint8_t OP_0E(); uint8_t OP_1E(); uint8_t OP_2E(); uint8_t OP_3E();	uint8_t OP_4E(); uint8_t OP_5E(); uint8_t OP_6E(); uint8_t OP_7E();
 	uint8_t OP_0F(); uint8_t OP_1F(); uint8_t OP_2F(); uint8_t OP_3F();	uint8_t OP_4F(); uint8_t OP_5F(); uint8_t OP_6F(); uint8_t OP_7F();
-					 
-					 
+
 	uint8_t OP_80(); uint8_t OP_90(); uint8_t OP_A0(); uint8_t OP_B0();	uint8_t OP_C0(); uint8_t OP_D0(); uint8_t OP_E0(); uint8_t OP_F0();
 	uint8_t OP_81(); uint8_t OP_91(); uint8_t OP_A1(); uint8_t OP_B1();	uint8_t OP_C1(); uint8_t OP_D1(); uint8_t OP_E1(); uint8_t OP_F1();
 	uint8_t OP_82(); uint8_t OP_92(); uint8_t OP_A2(); uint8_t OP_B2();	uint8_t OP_C2(); uint8_t OP_D2(); uint8_t OP_E2(); uint8_t OP_F2();
@@ -240,15 +219,5 @@ private:
 	uint8_t OP_CB_8D();	uint8_t OP_CB_9D();	uint8_t OP_CB_AD();	uint8_t OP_CB_BD();	uint8_t OP_CB_CD();	uint8_t OP_CB_DD();	uint8_t OP_CB_ED();	uint8_t OP_CB_FD();
 	uint8_t OP_CB_8E();	uint8_t OP_CB_9E();	uint8_t OP_CB_AE();	uint8_t OP_CB_BE();	uint8_t OP_CB_CE();	uint8_t OP_CB_DE();	uint8_t OP_CB_EE();	uint8_t OP_CB_FE();
 	uint8_t OP_CB_8F();	uint8_t OP_CB_9F();	uint8_t OP_CB_AF();	uint8_t OP_CB_BF();	uint8_t OP_CB_CF();	uint8_t OP_CB_DF();	uint8_t OP_CB_EF();	uint8_t OP_CB_FF();
-
-
-
-
-
-
-
-
-
-
 
 };
