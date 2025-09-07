@@ -35,6 +35,27 @@ public:
 	uint8_t  status = 0x00; // status register
 	
 public:
+	
+	//-o------------------------------------------------------------------o
+	// |   GET BC REGISTER                                                 |
+	//-o------------------------------------------------------------------o
+	uint16_t GetRegBC()
+	{
+		return bc;
+	}
+	
+	//-o------------------------------------------------------------------o
+	// |   SET BC REGISTER                                                 |
+	//-o------------------------------------------------------------------o
+	void SetRegBC(uint16_t val)
+	{
+		bc = val;
+	}
+
+	// TODO: All registers should go through getters and setters
+	// that includes de hl (the 16 bit versions)
+	// should do pc stkp status?
+
 	//-o------------------------------------------------------------------o
 	// |   GET A REGISTER                                                 |
 	//-o------------------------------------------------------------------o
