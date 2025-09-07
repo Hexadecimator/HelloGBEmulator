@@ -1,6 +1,7 @@
 #include "cpuLR35902.h"
 #include "Bus.h"
 
+
 cpuLR35902::cpuLR35902()
 {
 	using a = cpuLR35902;
@@ -23,6 +24,26 @@ cpuLR35902::cpuLR35902()
 		{"RET NC", &a::OP_D0, 20/8},{"POP DE", &a::OP_D1, 12},{"JP NC,a16", &a::OP_D2, 16/12},{"???", &a::OP_D3, 1},{"CALL NC,a16", &a::OP_D4, 24/12},{"PUSH DE", &a::OP_D5, 16},{"SUB d8", &a::OP_D6, 8},{"RST 10H", &a::OP_D7, 16},{"RET C", &a::OP_D8, 20/8},{"RETI", &a::OP_D9, 16},{"JP C,a16", &a::OP_DA, 16/12},{"???", &a::OP_DB, 1},{"CALL C,a16", &a::OP_DC, 24/12},{"???", &a::OP_DD, 1},{"SBC A,d8", &a::OP_DE, 8},{"RST 18H", &a::OP_DF, 16},
 		{"LDH (a8),A", &a::OP_E0, 12},{"POP HL", &a::OP_E1, 12},{"LD (C),A", &a::OP_E2, 8},{"???", &a::OP_E3, 1},{"???", &a::OP_E4, 1},{"PUSH HL", &a::OP_E5, 16},{"AND d8", &a::OP_E6, 8},{"RST 20H", &a::OP_E7, 16},{"ADD SP,r8", &a::OP_E8, 16},{"JP (HL)", &a::OP_E9, 4},{"LD (a16),A", &a::OP_EA, 16},{"???", &a::OP_EB, 1},{"???", &a::OP_EC, 1},{"???", &a::OP_ED, 1},{"XOR d8", &a::OP_EE, 8},{"RST 28H", &a::OP_EF, 16},
 		{"LDH A,(a8)", &a::OP_F0, 12},{"POP AF", &a::OP_F1, 12},{"LD A,(C)", &a::OP_F2, 8},{"DI", &a::OP_F3, 4},{"???", &a::OP_F4, 1},{"PUSH AF", &a::OP_F5, 16},{"OR d8", &a::OP_F6, 8},{"RST 30H", &a::OP_F7, 16},{"LD HL,SP+r8", &a::OP_F8, 12},{"LD SP,HL", &a::OP_F9, 8},{"LD A,(a16)", &a::OP_FA, 16},{"EI", &a::OP_FB, 4},{"???", &a::OP_FC, 1},{"???", &a::OP_FD, 1},{"CP d8", &a::OP_FE, 8},{"RST 38H", &a::OP_FF, 16}
+	};
+
+	cb_lookup =
+	{
+		{"RLC B", &a::OP_CB_00, 8},{"RLC C", &a::OP_CB_01, 8},{"RLC D", &a::OP_CB_02, 8},{"RLC E", &a::OP_CB_03, 8},{"RLC H", &a::OP_CB_04, 8},{"RLC L", &a::OP_CB_05, 8},{"RLC (HL)", &a::OP_CB_06, 16},{"RLC A", &a::OP_CB_07, 8},{"RRC B", &a::OP_CB_08, 8},{"RRC C", &a::OP_CB_09, 8},{"RRC D", &a::OP_CB_0A, 8},{"RRC E", &a::OP_CB_0B, 8},{"RRC H", &a::OP_CB_0C, 8},{"RRC L", &a::OP_CB_0D, 8},{"RRC (HL)", &a::OP_CB_0E, 16},{"RRC A", &a::OP_CB_0F, 8},
+		{"RL B", &a::OP_CB_10, 8},{"RL C", &a::OP_CB_11, 8},{"RL D", &a::OP_CB_12, 8},{"RL E", &a::OP_CB_13, 8},{"RL H", &a::OP_CB_14, 8},{"RL L", &a::OP_CB_15, 8},{"RL (HL)", &a::OP_CB_16, 16},{"RL A", &a::OP_CB_17, 8},{"RR B", &a::OP_CB_18, 8},{"RR C", &a::OP_CB_19, 8},{"RR D", &a::OP_CB_1A, 8},{"RR E", &a::OP_CB_1B, 8},{"RR H", &a::OP_CB_1C, 8},{"RR L", &a::OP_CB_1D, 8},{"RR (HL)", &a::OP_CB_1E, 16},{"RR A", &a::OP_CB_1F, 8},
+		{"SLA B", &a::OP_CB_20, 8},{"SLA C", &a::OP_CB_21, 8},{"SLA D", &a::OP_CB_22, 8},{"SLA E", &a::OP_CB_23, 8},{"SLA H", &a::OP_CB_24, 8},{"SLA L", &a::OP_CB_25, 8},{"SLA (HL)", &a::OP_CB_26, 16},{"SLA A", &a::OP_CB_27, 8},{"SRA B", &a::OP_CB_28, 8},{"SRA C", &a::OP_CB_29, 8},{"SRA D", &a::OP_CB_2A, 8},{"SRA E", &a::OP_CB_2B, 8},{"SRA H", &a::OP_CB_2C, 8},{"SRA L", &a::OP_CB_2D, 8},{"SRA (HL)", &a::OP_CB_2E, 16},{"SRA A", &a::OP_CB_2F, 8},
+		{"SWAP B", &a::OP_CB_30, 8},{"SWAP C", &a::OP_CB_31, 8},{"SWAP D", &a::OP_CB_32, 8},{"SWAP E", &a::OP_CB_33, 8},{"SWAP H", &a::OP_CB_34, 8},{"SWAP L", &a::OP_CB_35, 8},{"SWAP (HL)", &a::OP_CB_36, 16},{"SWAP A", &a::OP_CB_37, 8},{"SRL B", &a::OP_CB_38, 8},{"SRL C", &a::OP_CB_39, 8},{"SRL D", &a::OP_CB_3A, 8},{"SRL E", &a::OP_CB_3B, 8},{"SRL H", &a::OP_CB_3C, 8},{"SRL L", &a::OP_CB_3D, 8},{"SRL (HL)", &a::OP_CB_3E, 16},{"SRL A", &a::OP_CB_3F, 8},
+		{"BIT 0,B", &a::OP_CB_40, 8},{"BIT 0,C", &a::OP_CB_41, 8},{"BIT 0,D", &a::OP_CB_42, 8},{"BIT 0,E", &a::OP_CB_43, 8},{"BIT 0,H", &a::OP_CB_44, 8},{"BIT 0,L", &a::OP_CB_45, 8},{"BIT 0,(HL)", &a::OP_CB_46, 16},{"BIT 0,A", &a::OP_CB_47, 8},{"BIT 1,B", &a::OP_CB_48, 8},{"BIT 1,C", &a::OP_CB_49, 8},{"BIT 1,D", &a::OP_CB_4A, 8},{"BIT 1,E", &a::OP_CB_4B, 8},{"BIT 1,H", &a::OP_CB_4C, 8},{"BIT 1,L", &a::OP_CB_4D, 8},{"BIT 1,(HL)", &a::OP_CB_4E, 16},{"BIT 1,A", &a::OP_CB_4F, 8},
+		{"BIT 2,B", &a::OP_CB_40, 8},{"BIT 2,C", &a::OP_CB_41, 8},{"BIT 2,D", &a::OP_CB_42, 8},{"BIT 2,E", &a::OP_CB_43, 8},{"BIT 2,H", &a::OP_CB_44, 8},{"BIT 2,L", &a::OP_CB_45, 8},{"BIT 2,(HL)", &a::OP_CB_46, 16},{"BIT 2,A", &a::OP_CB_47, 8},{"BIT 3,B", &a::OP_CB_48, 8},{"BIT 3,C", &a::OP_CB_49, 8},{"BIT 3,D", &a::OP_CB_4A, 8},{"BIT 3,E", &a::OP_CB_4B, 8},{"BIT 3,H", &a::OP_CB_4C, 8},{"BIT 3,L", &a::OP_CB_4D, 8},{"BIT 3,(HL)", &a::OP_CB_4E, 16},{"BIT 3,A", &a::OP_CB_4F, 8},
+		{"BIT 4,B", &a::OP_CB_40, 8},{"BIT 4,C", &a::OP_CB_41, 8},{"BIT 4,D", &a::OP_CB_42, 8},{"BIT 4,E", &a::OP_CB_43, 8},{"BIT 4,H", &a::OP_CB_44, 8},{"BIT 4,L", &a::OP_CB_45, 8},{"BIT 4,(HL)", &a::OP_CB_46, 16},{"BIT 4,A", &a::OP_CB_47, 8},{"BIT 5,B", &a::OP_CB_48, 8},{"BIT 5,C", &a::OP_CB_49, 8},{"BIT 5,D", &a::OP_CB_4A, 8},{"BIT 5,E", &a::OP_CB_4B, 8},{"BIT 5,H", &a::OP_CB_4C, 8},{"BIT 5,L", &a::OP_CB_4D, 8},{"BIT 5,(HL)", &a::OP_CB_4E, 16},{"BIT 5,A", &a::OP_CB_4F, 8},
+		{"BIT 6,B", &a::OP_CB_40, 8},{"BIT 6,C", &a::OP_CB_41, 8},{"BIT 6,D", &a::OP_CB_42, 8},{"BIT 6,E", &a::OP_CB_43, 8},{"BIT 6,H", &a::OP_CB_44, 8},{"BIT 6,L", &a::OP_CB_45, 8},{"BIT 6,(HL)", &a::OP_CB_46, 16},{"BIT 6,A", &a::OP_CB_47, 8},{"BIT 7,B", &a::OP_CB_48, 8},{"BIT 7,C", &a::OP_CB_49, 8},{"BIT 7,D", &a::OP_CB_4A, 8},{"BIT 7,E", &a::OP_CB_4B, 8},{"BIT 7,H", &a::OP_CB_4C, 8},{"BIT 7,L", &a::OP_CB_4D, 8},{"BIT 7,(HL)", &a::OP_CB_4E, 16},{"BIT 7,A", &a::OP_CB_4F, 8},
+		{"RES 0,B", &a::OP_CB_70, 8},{"RES 0,C", &a::OP_CB_71, 8},{"RES 0,D", &a::OP_CB_72, 8},{"RES 0,E", &a::OP_CB_73, 8},{"RES 0,H", &a::OP_CB_74, 8},{"RES 0,L", &a::OP_CB_75, 8},{"RES 0,(HL)", &a::OP_CB_76, 16},{"RES 0,A", &a::OP_CB_77, 8},{"RES 1,B", &a::OP_CB_78, 8},{"RES 1,C", &a::OP_CB_79, 8},{"RES 1,D", &a::OP_CB_7A, 8},{"RES 1,E", &a::OP_CB_7B, 8},{"RES 1,H", &a::OP_CB_7C, 8},{"RES 1,L", &a::OP_CB_7D, 8},{"RES 1,(HL)", &a::OP_CB_7E, 16},{"RES 1,A", &a::OP_CB_7F, 8},
+		{"RES 2,B", &a::OP_CB_70, 8},{"RES 2,C", &a::OP_CB_71, 8},{"RES 2,D", &a::OP_CB_72, 8},{"RES 2,E", &a::OP_CB_73, 8},{"RES 2,H", &a::OP_CB_74, 8},{"RES 2,L", &a::OP_CB_75, 8},{"RES 2,(HL)", &a::OP_CB_76, 16},{"RES 2,A", &a::OP_CB_77, 8},{"RES 3,B", &a::OP_CB_78, 8},{"RES 3,C", &a::OP_CB_79, 8},{"RES 3,D", &a::OP_CB_7A, 8},{"RES 3,E", &a::OP_CB_7B, 8},{"RES 3,H", &a::OP_CB_7C, 8},{"RES 3,L", &a::OP_CB_7D, 8},{"RES 3,(HL)", &a::OP_CB_7E, 16},{"RES 3,A", &a::OP_CB_7F, 8},
+		{"RES 4,B", &a::OP_CB_70, 8},{"RES 4,C", &a::OP_CB_71, 8},{"RES 4,D", &a::OP_CB_72, 8},{"RES 4,E", &a::OP_CB_73, 8},{"RES 4,H", &a::OP_CB_74, 8},{"RES 4,L", &a::OP_CB_75, 8},{"RES 4,(HL)", &a::OP_CB_76, 16},{"RES 4,A", &a::OP_CB_77, 8},{"RES 5,B", &a::OP_CB_78, 8},{"RES 5,C", &a::OP_CB_79, 8},{"RES 5,D", &a::OP_CB_7A, 8},{"RES 5,E", &a::OP_CB_7B, 8},{"RES 5,H", &a::OP_CB_7C, 8},{"RES 5,L", &a::OP_CB_7D, 8},{"RES 5,(HL)", &a::OP_CB_7E, 16},{"RES 5,A", &a::OP_CB_7F, 8},
+		{"RES 6,B", &a::OP_CB_70, 8},{"RES 6,C", &a::OP_CB_71, 8},{"RES 6,D", &a::OP_CB_72, 8},{"RES 6,E", &a::OP_CB_73, 8},{"RES 6,H", &a::OP_CB_74, 8},{"RES 6,L", &a::OP_CB_75, 8},{"RES 6,(HL)", &a::OP_CB_76, 16},{"RES 6,A", &a::OP_CB_77, 8},{"RES 7,B", &a::OP_CB_78, 8},{"RES 7,C", &a::OP_CB_79, 8},{"RES 7,D", &a::OP_CB_7A, 8},{"RES 7,E", &a::OP_CB_7B, 8},{"RES 7,H", &a::OP_CB_7C, 8},{"RES 7,L", &a::OP_CB_7D, 8},{"RES 7,(HL)", &a::OP_CB_7E, 16},{"RES 7,A", &a::OP_CB_7F, 8},
+		{"SET 0,B", &a::OP_CB_70, 8},{"SET 0,C", &a::OP_CB_71, 8},{"SET 0,D", &a::OP_CB_72, 8},{"SET 0,E", &a::OP_CB_73, 8},{"SET 0,H", &a::OP_CB_74, 8},{"SET 0,L", &a::OP_CB_75, 8},{"SET 0,(HL)", &a::OP_CB_76, 16},{"SET 0,A", &a::OP_CB_77, 8},{"SET 1,B", &a::OP_CB_78, 8},{"SET 1,C", &a::OP_CB_79, 8},{"SET 1,D", &a::OP_CB_7A, 8},{"SET 1,E", &a::OP_CB_7B, 8},{"SET 1,H", &a::OP_CB_7C, 8},{"SET 1,L", &a::OP_CB_7D, 8},{"SET 1,(HL)", &a::OP_CB_7E, 16},{"SET 1,A", &a::OP_CB_7F, 8},
+		{"SET 2,B", &a::OP_CB_70, 8},{"SET 2,C", &a::OP_CB_71, 8},{"SET 2,D", &a::OP_CB_72, 8},{"SET 2,E", &a::OP_CB_73, 8},{"SET 2,H", &a::OP_CB_74, 8},{"SET 2,L", &a::OP_CB_75, 8},{"SET 2,(HL)", &a::OP_CB_76, 16},{"SET 2,A", &a::OP_CB_77, 8},{"SET 3,B", &a::OP_CB_78, 8},{"SET 3,C", &a::OP_CB_79, 8},{"SET 3,D", &a::OP_CB_7A, 8},{"SET 3,E", &a::OP_CB_7B, 8},{"SET 3,H", &a::OP_CB_7C, 8},{"SET 3,L", &a::OP_CB_7D, 8},{"SET 3,(HL)", &a::OP_CB_7E, 16},{"SET 3,A", &a::OP_CB_7F, 8},
+		{"SET 4,B", &a::OP_CB_70, 8},{"SET 4,C", &a::OP_CB_71, 8},{"SET 4,D", &a::OP_CB_72, 8},{"SET 4,E", &a::OP_CB_73, 8},{"SET 4,H", &a::OP_CB_74, 8},{"SET 4,L", &a::OP_CB_75, 8},{"SET 4,(HL)", &a::OP_CB_76, 16},{"SET 4,A", &a::OP_CB_77, 8},{"SET 5,B", &a::OP_CB_78, 8},{"SET 5,C", &a::OP_CB_79, 8},{"SET 5,D", &a::OP_CB_7A, 8},{"SET 5,E", &a::OP_CB_7B, 8},{"SET 5,H", &a::OP_CB_7C, 8},{"SET 5,L", &a::OP_CB_7D, 8},{"SET 5,(HL)", &a::OP_CB_7E, 16},{"SET 5,A", &a::OP_CB_7F, 8},
+		{"SET 6,B", &a::OP_CB_70, 8},{"SET 6,C", &a::OP_CB_71, 8},{"SET 6,D", &a::OP_CB_72, 8},{"SET 6,E", &a::OP_CB_73, 8},{"SET 6,H", &a::OP_CB_74, 8},{"SET 6,L", &a::OP_CB_75, 8},{"SET 6,(HL)", &a::OP_CB_76, 16},{"SET 6,A", &a::OP_CB_77, 8},{"SET 7,B", &a::OP_CB_78, 8},{"SET 7,C", &a::OP_CB_79, 8},{"SET 7,D", &a::OP_CB_7A, 8},{"SET 7,E", &a::OP_CB_7B, 8},{"SET 7,H", &a::OP_CB_7C, 8},{"SET 7,L", &a::OP_CB_7D, 8},{"SET 7,(HL)", &a::OP_CB_7E, 16},{"SET 7,A", &a::OP_CB_7F, 8},
 	};
 }
 
@@ -51,20 +72,3 @@ uint8_t cpuLR35902::fetch()
 	return fetched;
 }
 
-// TODO: QUESTION: SHOULD WE MOVE THESE FUNCTION DEFINITIONS TO THEIR OWN FILE FOR ORGANIZATIONAL REASONS?
-
-//-o------------------------------------------------------------------o
-// |   OPCODE: NOP (0x00)                                             |
-//-o------------------------------------------------------------------o
-uint8_t cpuLR35902::OP_00()
-{
-	// TODO: Game compatibility may necessitate handling different
-	// NOP opcodes differently, thus the switch statement
-	switch (opcode)
-	{
-	case 0xFC:
-		return 1;
-		break;
-	}
-	return 0;
-}

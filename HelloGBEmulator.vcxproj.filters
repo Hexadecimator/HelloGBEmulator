@@ -24,6 +24,12 @@
     <ClCompile Include="cpuLR35902.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OpcodeFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Opcode_CB_Functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bus.h">
