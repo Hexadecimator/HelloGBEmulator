@@ -54,7 +54,7 @@ public:
 
 	// TODO: All registers should go through getters and setters
 	// that includes de hl (the 16 bit versions)
-	// should do pc stkp status?
+	// should we do pc stkp status?
 
 	//-o------------------------------------------------------------------o
 	// |   GET A REGISTER                                                 |
