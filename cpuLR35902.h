@@ -154,6 +154,7 @@ private:
 	};
 
 	std::vector<INSTRUCTION> lookup;
+	std::vector<INSTRUCTION> cb_lookup;
 
 private:
 	//-o------------------------------------------------------------------o
