@@ -44,7 +44,6 @@ cpuLR35902::cpuLR35902()
 		{"SET 2,B", &a::OP_CB_70, 8},{"SET 2,C", &a::OP_CB_71, 8},{"SET 2,D", &a::OP_CB_72, 8},{"SET 2,E", &a::OP_CB_73, 8},{"SET 2,H", &a::OP_CB_74, 8},{"SET 2,L", &a::OP_CB_75, 8},{"SET 2,(HL)", &a::OP_CB_76, 16},{"SET 2,A", &a::OP_CB_77, 8},{"SET 3,B", &a::OP_CB_78, 8},{"SET 3,C", &a::OP_CB_79, 8},{"SET 3,D", &a::OP_CB_7A, 8},{"SET 3,E", &a::OP_CB_7B, 8},{"SET 3,H", &a::OP_CB_7C, 8},{"SET 3,L", &a::OP_CB_7D, 8},{"SET 3,(HL)", &a::OP_CB_7E, 16},{"SET 3,A", &a::OP_CB_7F, 8},
 		{"SET 4,B", &a::OP_CB_70, 8},{"SET 4,C", &a::OP_CB_71, 8},{"SET 4,D", &a::OP_CB_72, 8},{"SET 4,E", &a::OP_CB_73, 8},{"SET 4,H", &a::OP_CB_74, 8},{"SET 4,L", &a::OP_CB_75, 8},{"SET 4,(HL)", &a::OP_CB_76, 16},{"SET 4,A", &a::OP_CB_77, 8},{"SET 5,B", &a::OP_CB_78, 8},{"SET 5,C", &a::OP_CB_79, 8},{"SET 5,D", &a::OP_CB_7A, 8},{"SET 5,E", &a::OP_CB_7B, 8},{"SET 5,H", &a::OP_CB_7C, 8},{"SET 5,L", &a::OP_CB_7D, 8},{"SET 5,(HL)", &a::OP_CB_7E, 16},{"SET 5,A", &a::OP_CB_7F, 8},
 		{"SET 6,B", &a::OP_CB_70, 8},{"SET 6,C", &a::OP_CB_71, 8},{"SET 6,D", &a::OP_CB_72, 8},{"SET 6,E", &a::OP_CB_73, 8},{"SET 6,H", &a::OP_CB_74, 8},{"SET 6,L", &a::OP_CB_75, 8},{"SET 6,(HL)", &a::OP_CB_76, 16},{"SET 6,A", &a::OP_CB_77, 8},{"SET 7,B", &a::OP_CB_78, 8},{"SET 7,C", &a::OP_CB_79, 8},{"SET 7,D", &a::OP_CB_7A, 8},{"SET 7,E", &a::OP_CB_7B, 8},{"SET 7,H", &a::OP_CB_7C, 8},{"SET 7,L", &a::OP_CB_7D, 8},{"SET 7,(HL)", &a::OP_CB_7E, 16},{"SET 7,A", &a::OP_CB_7F, 8},
-
 	};
 }
 
