@@ -13,11 +13,19 @@ Bus::~Bus()
 
 }
 
+//-o------------------------------------------------------------------o
+// |   WRITE TO WRAM					                              |
+//-o------------------------------------------------------------------o
+
 void Bus::writeWRAM(uint16_t addr, uint8_t data)
 {
 	if (addr >= 0x0000 && addr <= 0xFFFF)
 		wRam[addr] = data;
 }
+
+//-o------------------------------------------------------------------o
+// |   READ FROM WRAM					                              |
+//-o------------------------------------------------------------------o
 
 uint8_t Bus::readWRAM(uint16_t addr, bool bReadOnly)
 {
@@ -26,12 +34,19 @@ uint8_t Bus::readWRAM(uint16_t addr, bool bReadOnly)
 
 	return 0x00;
 }
+//-o------------------------------------------------------------------o
+// |   WRITE TO VRAM					                              |
+//-o------------------------------------------------------------------o
 
 void Bus::writeVRAM(uint16_t addr, uint8_t data)
 {
 	if (addr >= 0x0000 && addr <= 0xFFFF)
 		vRam[addr] = data;
 }
+
+//-o------------------------------------------------------------------o
+// |   READ FROM VRAM					                              |
+//-o------------------------------------------------------------------o
 
 uint8_t Bus::readVRAM(uint16_t addr, bool bReadOnly)
 {

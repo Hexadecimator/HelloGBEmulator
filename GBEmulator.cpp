@@ -71,24 +71,26 @@ using namespace std;
 class GBEmulator {
 
     private:
+
         Bus game; 
         Cartridge cart;
 
     public:
-        
 
-    void start() {
+        void start() {
 
-        // TO DO - Write basic step-through clock cycling for testing
+            // TESTING GETTERS AND SETTERS
+            game.cpu.SetRegB(146);
+            cout << unsigned(game.cpu.GetRegB());
 
-    }
+        }
 
 };
 
 int main() {
     
-    //GBEmulator game;
-    //game.start();
+    GBEmulator game;
+    game.start();
 
     return 0;
 

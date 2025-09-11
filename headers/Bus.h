@@ -10,18 +10,32 @@ class Bus
 {
 public:
 
+	//-o------------------------------------------------------------------o
+	// |   CONSTRUCTOR/DECONSTRUCTOR                                      |
+	//-o------------------------------------------------------------------o
+
 	Bus();
 	~Bus();
 
 public:
 
+	//-o------------------------------------------------------------------o
+	// |   CONNECTED COMPONENTS	                                          |
+	//-o------------------------------------------------------------------o
 	cpuLR35902 cpu; 
 	//ppu ppu; Uncomment once ppu.h is implemented
 	Cartridge cart;
+
+	//-o------------------------------------------------------------------o
+	// |   WRAM/VRAM					                                  |
+	//-o------------------------------------------------------------------o
+
 	std::array<uint8_t, 8 * 1024> wRam; // 8kb work ram
 	std::array<uint8_t, 8 * 1024> vRam; // 8kb video ram
 
-public:
+	//-o------------------------------------------------------------------o
+	// |   WRAM/VRAM READ/WRITE FUNCTIONS					              |
+	//-o------------------------------------------------------------------o
 
 	void writeWRAM(uint16_t addr, uint8_t data);
 	uint8_t readWRAM(uint16_t addr, bool bReadOnly = false);
