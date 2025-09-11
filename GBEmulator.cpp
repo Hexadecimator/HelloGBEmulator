@@ -75,7 +75,7 @@ class GBEmulator {
         Cartridge cart;
 
     public:
-        GBEmulator();
+        
 
     void start() {
 
