@@ -87,8 +87,8 @@ class GBEmulator {
 
 int main() {
     
-    GBEmulator game;
-    game.start();
+    //GBEmulator game;
+    //game.start();
 
     return 0;
 

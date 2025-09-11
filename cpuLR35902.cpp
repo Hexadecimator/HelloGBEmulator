@@ -4,6 +4,7 @@
 
 cpuLR35902::cpuLR35902()
 {
+	/*
 	using a = cpuLR35902;
 	lookup =
 	{
@@ -44,6 +45,7 @@ cpuLR35902::cpuLR35902()
 		{"SET 4,B", &a::OP_CB_E0, 8},{"SET 4,C", &a::OP_CB_E1, 8},{"SET 4,D", &a::OP_CB_E2, 8},{"SET 4,E", &a::OP_CB_E3, 8},{"SET 4,H", &a::OP_CB_E4, 8},{"SET 4,L", &a::OP_CB_E5, 8},{"SET 4,(HL)", &a::OP_CB_E6, 16},{"SET 4,A", &a::OP_CB_E7, 8},{"SET 5,B", &a::OP_CB_E8, 8},{"SET 5,C", &a::OP_CB_E9, 8},{"SET 5,D", &a::OP_CB_EA, 8},{"SET 5,E", &a::OP_CB_EB, 8},{"SET 5,H", &a::OP_CB_EC, 8},{"SET 5,L", &a::OP_CB_ED, 8},{"SET 5,(HL)", &a::OP_CB_EE, 16},{"SET 5,A", &a::OP_CB_EF, 8},
 		{"SET 6,B", &a::OP_CB_F0, 8},{"SET 6,C", &a::OP_CB_F1, 8},{"SET 6,D", &a::OP_CB_F2, 8},{"SET 6,E", &a::OP_CB_F3, 8},{"SET 6,H", &a::OP_CB_F4, 8},{"SET 6,L", &a::OP_CB_F5, 8},{"SET 6,(HL)", &a::OP_CB_F6, 16},{"SET 6,A", &a::OP_CB_F7, 8},{"SET 7,B", &a::OP_CB_F8, 8},{"SET 7,C", &a::OP_CB_F9, 8},{"SET 7,D", &a::OP_CB_FA, 8},{"SET 7,E", &a::OP_CB_FB, 8},{"SET 7,H", &a::OP_CB_FC, 8},{"SET 7,L", &a::OP_CB_FD, 8},{"SET 7,(HL)", &a::OP_CB_FE, 16},{"SET 7,A", &a::OP_CB_FF, 8}
 	};
+	*/
 }
 
 cpuLR35902::~cpuLR35902()
@@ -65,7 +67,7 @@ void cpuLR35902::SetFlag(FLAGS35902 f, bool v)
 
 uint8_t cpuLR35902::fetch()
 {
-	fetched = read(addr_abs);
+	//fetched = read(addr_abs);
 
 	return fetched;
 }
