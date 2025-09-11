@@ -13,7 +13,7 @@ uint8_t cpuLR35902::OP_CB_00()
 	
 	// set carry bit, plus carry becomes bit 0
 
-	/* REDEFINED VARIABLES, FIX LATER
+	/*** REDEFINED VARIABLES COMPILER ISSUE ***
 	uint8_t carry = 0x80 & b; // 0b1000 0000
 	uint8_t carry = carry >> 8;
 
@@ -42,7 +42,7 @@ uint8_t cpuLR35902::OP_CB_01()
 
 	// set carry bit, plus carry becomes bit 0
 
-	/* REDEFINED VARIABLES, FIX LATER
+	/*** REDEFINED VARIABLES COMPILER ISSUE ***
 	uint8_t carry = 0x80 & c; // 0b1000 0000
 	uint8_t carry = carry >> 8;
 	
