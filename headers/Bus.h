@@ -16,7 +16,7 @@ public:
 public:
 
 	cpuLR35902 cpu; 
-	ppu ppu;
+	//ppu ppu; Uncomment once ppu.h is implemented
 	Cartridge cart;
 	std::array<uint8_t, 8 * 1024> wRam; // 8kb work ram
 	std::array<uint8_t, 8 * 1024> vRam; // 8kb video ram
