@@ -66,9 +66,10 @@ void cpuLR35902::SetFlag(FLAGS35902 f, bool v)
 
 uint8_t cpuLR35902::fetch()
 {
-	// TODO: INCORPORATE THE DIFFERENT ADDRESSING MODES
 	fetched = read(addr_abs);
 
 	return fetched;
 }
+
+
 
