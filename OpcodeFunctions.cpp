@@ -1,4 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 #include "headers/cpuLR35902.h"
+
+using namespace std;
 
 //-o------------------------------------------------------------------o
 // |   OPCODE: NOP (0x00)                                             |
@@ -14,12 +19,6 @@ uint8_t cpuLR35902::OP_00()
 		return 1;
 		break;
 	}
-
-	/* Example clock cycle
-
-	 cpu.clock(lookup[OP_00].cycles);
-
-	*/
 
 	return 0;
 }

@@ -79,10 +79,8 @@ class GBEmulator {
 
         void start() {
 
-            // TESTING GETTERS AND SETTERS
-            game.cpu.SetRegB(146);
-            cout << unsigned(game.cpu.GetRegB());
-
+            game.cpu.clock();
+            
         }
 
 };

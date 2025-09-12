@@ -92,7 +92,7 @@ public:
 		Z = (1 << 7)  // Zero flag
 	};
 
-private:
+public:
 
 	//-o------------------------------------------------------------------o
 	// |   FLAG GETTER/SETTER FUNCTIONS				                      |
@@ -120,6 +120,7 @@ private:
 	struct INSTRUCTION
 	{
 		std::string name;
+
 		uint8_t (cpuLR35902::* operate)(void) = nullptr;
 		
 		// it doesn't seem like GB has multiple addressing modes? keeping for now just in case

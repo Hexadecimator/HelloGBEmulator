@@ -1,5 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 #include "headers/cpuLR35902.h"
 
+using namespace std;
 
 //-o------------------------------------------------------------------o
 // |   CB OPCODE: RLC B (0x00)                                        |

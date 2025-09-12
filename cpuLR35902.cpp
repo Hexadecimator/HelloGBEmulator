@@ -1,6 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <iostream>
 #include "headers/cpuLR35902.h"
 #include "headers/Bus.h"
 
+using namespace std;
 
 cpuLR35902::cpuLR35902()
 {
@@ -170,13 +174,29 @@ void cpuLR35902::SetFlag(FLAGS35902 f, bool v)
 //-o------------------------------------------------------------------o
 uint8_t cpuLR35902::fetch()
 {
-	/*** CAUSES COMPILER ISSUE UNTIL READ FUNCTION IS IMPLEMENTED 
-	
-	fetched = read(addr_abs); 
+	/*** CAUSES COMPILER ISSUE UNTIL READ FUNCTION IS IMPLEMENTED
+
+	fetched = read(addr_abs);
 
 	*/
 
 	return fetched;
+}
+
+//-o------------------------------------------------------------------o
+// |   CLOCK			                                              |
+//-o------------------------------------------------------------------o
+void cpuLR35902::clock()
+{
+
+	//TODO: figure out switch statement that checks whether we need to use cb or
+	// standard lookup table
+
+	// Just for testing opcodes!!
+	opcode = 0;
+	uint8_t testValue = (this->*lookup[opcode].operate)();
+	
+
 }
 
 
