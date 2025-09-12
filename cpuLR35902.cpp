@@ -192,6 +192,11 @@ void cpuLR35902::clock()
 	//TODO: figure out switch statement that checks whether we need to use cb or
 	// standard lookup table
 
+	// FIRST THE CPU PARSES THE HEADER FILE THEN SETS THE PC TO THE ADDRESS
+	// TO THE FIRST INSTRUCTION. PC IS INCREMENTED AFTER FETCHING THE INSTRUCTION.
+	// MAYBE ADD THE BYTE SIZE TO THE OPTABLE SO WE KNOW HOW MUCH WE NEED TO INCREMENT
+	// THE PC (NOT EVERY INSTRUCTION IS 1 BYTE)
+
 	// Just for testing opcodes!!
 	opcode = 0;
 	uint8_t testValue = (this->*lookup[opcode].operate)();
