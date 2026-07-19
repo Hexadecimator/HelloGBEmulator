@@ -11,5 +11,6 @@ class Cartridge
 		Cartridge();
 		~Cartridge();
 		void go();
+		void getCartridgeType(const int data);
 
 };
