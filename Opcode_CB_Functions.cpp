@@ -21,7 +21,6 @@ uint8_t cpuLR35902::OP_CB_00()
 	
 	// set carry bit, plus carry becomes bit 0
 
-	
 	uint8_t carry = 0x80 & b; // 0b1000 0000
 	carry = carry >> 8;
 
