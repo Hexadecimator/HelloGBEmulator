@@ -23,7 +23,7 @@ void Cartridge::go() {
 
     int length = 0;
 
-    ifstream file("blue.gb", ios::in | ios::binary);
+    ifstream file("C:\\Users\\logan\\Desktop\\blue.gb", ios::in | ios::binary);
 
     if (file.is_open())
     {
