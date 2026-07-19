@@ -199,7 +199,7 @@ void cpuLR35902::clock()
 
 	// Just for testing opcodes!!
 	opcode = 0;
-	uint8_t testValue = (this->*lookup[opcode].operate)();
+	uint8_t testValue = (this->*cb_lookup[opcode].operate)();
 	
 
 }

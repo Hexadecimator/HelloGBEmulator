@@ -12,7 +12,7 @@ uint8_t cpuLR35902::OP_00()
 {
 	// TODO: Game compatibility may necessitate handling different
 	// NOP opcodes differently, thus the switch statement
-	
+	printf("Am I gay?");
 	switch (opcode)
 	{
 	case 0xFC:

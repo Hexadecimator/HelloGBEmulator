@@ -13,13 +13,18 @@ uint8_t cpuLR35902::OP_CB_00()
 	// shifts all bits of register B left, what was bit 7 becomes bit 0
 	// what was bit 7 also is stored in the carry flag
 	// clears half-carry and subtract flags
+	uint8_t a = 0x0A;
+	SetRegB(a);
 	uint8_t b = GetRegB();
+
+	printf("%#X", b);
 	
 	// set carry bit, plus carry becomes bit 0
 
-	/*** REDEFINED VARIABLES COMPILER ISSUE ***
+	
 	uint8_t carry = 0x80 & b; // 0b1000 0000
-	uint8_t carry = carry >> 8;
+	carry = carry >> 8;
+
 
 	SetFlag(FLAGS35902::C, carry);
 
@@ -28,7 +33,7 @@ uint8_t cpuLR35902::OP_CB_00()
 	b = b << 1;
 	b = b | carry;
 	SetRegB(b);
-	*/
+	
 
 	// clear half carry and subtract flags
 	SetFlag(FLAGS35902::H, 0);
