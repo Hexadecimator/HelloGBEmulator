@@ -64,42 +64,31 @@ https://gbdev.io/pandocs/
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
-#include <fstream>
-#include <bitset>
-#include <vector>
+#include "headers/Bus.h"
 
 using namespace std;
 
+class GBEmulator {
+
+    private:
+
+        Bus game; 
+        Cartridge cart;
+
+    public:
+
+        void start() {
+
+            game.cpu.clock();
+            
+        }
+
+};
+
 int main() {
     
-    const int nameBuffer = 308;
-    streampos size;
-
-    int length = 0;
-
-    ifstream file("../blue.gb", ios::in | ios::binary);
-
-    if (file.is_open())
-    {
-        size = file.tellg();
-
-        vector<unsigned char> buffer(istreambuf_iterator<char>(file), {});
-
-        /*
-        for (unsigned char i : buffer) {
-            cout << unsigned(i) << " ";
-        }
-        */
-
-        cout << "Title Name: ";
-
-        for (int i = 0; i < 16; i++) {
-            cout << (buffer[nameBuffer+i]);
-        }
-
-    }
-
-    else cout << "Unable to open file";
+    GBEmulator game;
+    game.start();
 
     return 0;
 

@@ -8,10 +8,16 @@ class Bus;
 class cpuLR35902
 {
 public:
+
+	//-o------------------------------------------------------------------o
+	// |   CONSTRUCTOR/DECONSTRUCTOR                                      |
+	//-o------------------------------------------------------------------o
+
 	cpuLR35902();
 	~cpuLR35902();
 
 public:
+
 	// TODO:
 	// REGISTERS
 	// external event functions
@@ -22,6 +28,7 @@ public:
 	//-o------------------------------------------------------------------o
 	// |   REGISTER DEFINITIONS                                           |
 	//-o------------------------------------------------------------------o
+	// 
 	// Accumulator and flags
 	uint16_t af     = 0x0000; 
 	// The below 3 registers are general purpose 16 bit registers, 
@@ -34,102 +41,49 @@ public:
 	uint16_t pc     = 0x0000; // program counter
 	uint8_t  status = 0x00; // status register
 	
-public:
-	
-	//-o------------------------------------------------------------------o
-	// |   GET BC REGISTER                                                 |
-	//-o------------------------------------------------------------------o
-	uint16_t GetRegBC()
-	{
-		return bc;
-	}
-	
-	//-o------------------------------------------------------------------o
-	// |   SET BC REGISTER                                                 |
-	//-o------------------------------------------------------------------o
-	void SetRegBC(uint16_t val)
-	{
-		bc = val;
-	}
-
-	// TODO: All registers should go through getters and setters
-	// that includes de hl (the 16 bit versions)
-	// should we do pc stkp status?
+public:	
 
 	//-o------------------------------------------------------------------o
-	// |   GET A REGISTER                                                 |
+	// |   REGISTER GETTER/SETTER FUNCTIONS                               |
 	//-o------------------------------------------------------------------o
-	uint8_t GetRegA()
-	{
-		uint8_t reg = 0x00 | (af >> 8);
-		return reg;
-	}
+
+	uint16_t GetRegBC();
+	uint8_t GetRegA();
+	uint8_t GetRegB();
+	uint8_t GetRegC();
+
+	void SetRegBC(uint16_t val);
+	void SetRegA(uint8_t val);
+	void SetRegB(uint8_t val);
+	void SetRegC(uint8_t val);
 
 	//-o------------------------------------------------------------------o
-	// |   SET A REGISTER                                                 |
+	// |   CPU SPECIFIC FUNCTIONS                                         |
 	//-o------------------------------------------------------------------o
-	void SetRegA(uint8_t val)
-	{
-		uint16_t tmp = 0x0000 | val;
-		tmp = tmp << 8;
-		af = 0x00F0 & af;
-		af |= tmp;
-	}
-
-	//-o------------------------------------------------------------------o
-	// |   GET B REGISTER                                                 |
-	//-o------------------------------------------------------------------o
-	uint8_t GetRegB()
-	{
-		uint16_t reg = (0xFF00 & bc);
-		reg = reg >> 8;
-		uint8_t ret = 0x00 | reg;
-		return ret;
-	}
-
-	//-o------------------------------------------------------------------o
-	// |   SET B REGISTER                                                 |
-	//-o------------------------------------------------------------------o
-	void SetRegB(uint8_t val)
-	{
-		uint16_t reg = 0x0000 | (val);
-		reg = reg << 8;
-		bc = 0x00FF & bc;
-		bc = bc | reg;
-	}
-
-	//-o------------------------------------------------------------------o
-	// |   GET C REGISTER                                                 |
-	//-o------------------------------------------------------------------o
-	uint8_t GetRegC()
-	{
-		uint16_t reg = (0x00FF & bc);
-		uint8_t ret = 0x00 | reg;
-		return ret;
-	}
-
-	//-o------------------------------------------------------------------o
-	// |   SET C REGISTER                                                 |
-	//-o------------------------------------------------------------------o
-	void SetRegC(uint8_t val)
-	{
-		uint16_t reg = 0x0000 | (val);
-		bc = 0xFF00 & bc;
-		bc = bc | reg;
-	}
-
-	// TODO: DE and HL GET/SETS will just be copies of BC GET/SETS
 
 	void reset();
 	void irq();
 	void nmi();
 	void clock();
+	uint8_t fetch();
+	uint8_t read(uint16_t a);
+	void write(uint16_t a, uint8_t d);
 
+	//-o------------------------------------------------------------------o
+    // |   CONNECT TO BUS                                                 |
+    //-o------------------------------------------------------------------o
+
+	Bus* bus = nullptr;
 	void ConnectBus(Bus* n) { bus = n; }
 
 	//-o------------------------------------------------------------------o
-	// |   LOWER 8 BITS OF AF REGISTER                                    |
+	// |   LOWER 8 BITS OF AF REGISTER                                    | // <---- Does this need done still?
 	//-o------------------------------------------------------------------o
+
+	//-o------------------------------------------------------------------o
+	// |   FLAG ENUMS                                                     |
+	//-o------------------------------------------------------------------o
+
 	enum FLAGS35902
 	{
 		C = (1 << 4), // Carry flag
@@ -138,28 +92,35 @@ public:
 		Z = (1 << 7)  // Zero flag
 	};
 
-private:
+public:
+
+	//-o------------------------------------------------------------------o
+	// |   FLAG GETTER/SETTER FUNCTIONS				                      |
+	//-o------------------------------------------------------------------o
+
 	uint8_t GetFlag(FLAGS35902 f);
 	void    SetFlag(FLAGS35902 f, bool v);
 
-	// Assistance variables
+	//-o------------------------------------------------------------------o
+	// |   ASSISTANCE VARIABLES		                                      |
+	//-o------------------------------------------------------------------o
+
 	uint8_t fetched      = 0x00;
 	uint16_t temp        = 0x0000;
 	uint16_t addr_abs    = 0x0000;
 	uint16_t addr_rel    = 0x0000; // TODO: Need this?
 	uint8_t opcode       = 0x00;
 	uint8_t cycles       = 0x00;
-	uint32_t clock_count = 0x00000000;
+	uint32_t clock_count = 0x00000000;	
 
-	Bus* bus = nullptr;
-	uint8_t read(uint16_t a);
-	void    write(uint16_t a, uint8_t d);
-
-	uint8_t fetch();
+	//-o------------------------------------------------------------------o
+	// |   OPCODE STRUCT	                                              |
+	//-o------------------------------------------------------------------o
 
 	struct INSTRUCTION
 	{
 		std::string name;
+
 		uint8_t (cpuLR35902::* operate)(void) = nullptr;
 		
 		// it doesn't seem like GB has multiple addressing modes? keeping for now just in case
@@ -174,22 +135,30 @@ private:
 		uint8_t cycles = 0;
 	};
 
+	//-o------------------------------------------------------------------o
+	// |   OPCODE TABLES			                                      |
+	//-o------------------------------------------------------------------o
+
 	std::vector<INSTRUCTION> lookup;
 	std::vector<INSTRUCTION> cb_lookup;
 
-private:
 	//-o------------------------------------------------------------------o
-	// |   ADDRESSING MODES                                               |
+	// |   ADDRESSING MODES - Do not use (yet).                           |
 	//-o------------------------------------------------------------------o
-	uint8_t IMP();
-	uint8_t IMM();
-	uint8_t ABS();
 
-private:
+	//uint8_t IMP();
+	//uint8_t IMM();
+	//uint8_t ABS();
+
 	//-o------------------------------------------------------------------o
 	// |   STANDARD OPCODES                                               |
 	//-o------------------------------------------------------------------o
-	uint8_t OP_00(); uint8_t OP_10(); uint8_t OP_20(); uint8_t OP_30();	uint8_t OP_40(); uint8_t OP_50(); uint8_t OP_60(); uint8_t OP_70();
+
+	uint8_t OP_00();
+	
+	/*** OPCODES THAT ARE UNINITIALIZED WILL CAUSE COMPILER ISSUES ***
+	
+	uint8_t OP_10(); uint8_t OP_20(); uint8_t OP_30();	uint8_t OP_40(); uint8_t OP_50(); uint8_t OP_60(); uint8_t OP_70();
 	uint8_t OP_01(); uint8_t OP_11(); uint8_t OP_21(); uint8_t OP_31();	uint8_t OP_41(); uint8_t OP_51(); uint8_t OP_61(); uint8_t OP_71();
 	uint8_t OP_02(); uint8_t OP_12(); uint8_t OP_22(); uint8_t OP_32();	uint8_t OP_42(); uint8_t OP_52(); uint8_t OP_62(); uint8_t OP_72();
 	uint8_t OP_03(); uint8_t OP_13(); uint8_t OP_23(); uint8_t OP_33();	uint8_t OP_43(); uint8_t OP_53(); uint8_t OP_63(); uint8_t OP_73();
@@ -222,11 +191,17 @@ private:
 	uint8_t OP_8D(); uint8_t OP_9D(); uint8_t OP_AD(); uint8_t OP_BD();	uint8_t OP_CD(); uint8_t OP_DD(); uint8_t OP_ED(); uint8_t OP_FD();
 	uint8_t OP_8E(); uint8_t OP_9E(); uint8_t OP_AE(); uint8_t OP_BE();	uint8_t OP_CE(); uint8_t OP_DE(); uint8_t OP_EE(); uint8_t OP_FE();
 	uint8_t OP_8F(); uint8_t OP_9F(); uint8_t OP_AF(); uint8_t OP_BF();	uint8_t OP_CF(); uint8_t OP_DF(); uint8_t OP_EF(); uint8_t OP_FF();
-
+	*/
 
 	//-o------------------------------------------------------------------o
 	// |   CB OPCODES                                                     |
 	//-o------------------------------------------------------------------o
+
+	uint8_t OP_CB_00();
+	uint8_t OP_CB_01();
+
+	/*** OPCODES THAT ARE UNINITIALIZED WILL CAUSE COMPILER ISSUES ***
+	
 	uint8_t OP_CB_00(); uint8_t OP_CB_10(); uint8_t OP_CB_20(); uint8_t OP_CB_30(); uint8_t OP_CB_40();	uint8_t OP_CB_50();	uint8_t OP_CB_60();	uint8_t OP_CB_70();
 	uint8_t OP_CB_01(); uint8_t OP_CB_11(); uint8_t OP_CB_21(); uint8_t OP_CB_31(); uint8_t OP_CB_41();	uint8_t OP_CB_51();	uint8_t OP_CB_61();	uint8_t OP_CB_71();
 	uint8_t OP_CB_02(); uint8_t OP_CB_12(); uint8_t OP_CB_22(); uint8_t OP_CB_32(); uint8_t OP_CB_42();	uint8_t OP_CB_52();	uint8_t OP_CB_62();	uint8_t OP_CB_72();
@@ -261,5 +236,6 @@ private:
 	uint8_t OP_CB_8D();	uint8_t OP_CB_9D();	uint8_t OP_CB_AD();	uint8_t OP_CB_BD();	uint8_t OP_CB_CD();	uint8_t OP_CB_DD();	uint8_t OP_CB_ED();	uint8_t OP_CB_FD();
 	uint8_t OP_CB_8E();	uint8_t OP_CB_9E();	uint8_t OP_CB_AE();	uint8_t OP_CB_BE();	uint8_t OP_CB_CE();	uint8_t OP_CB_DE();	uint8_t OP_CB_EE();	uint8_t OP_CB_FE();
 	uint8_t OP_CB_8F();	uint8_t OP_CB_9F();	uint8_t OP_CB_AF();	uint8_t OP_CB_BF();	uint8_t OP_CB_CF();	uint8_t OP_CB_DF();	uint8_t OP_CB_EF();	uint8_t OP_CB_FF();
+	*/
 
 };
