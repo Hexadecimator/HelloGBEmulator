@@ -3,6 +3,7 @@
 #include <iostream>
 #include "headers/cpuLR35902.h"
 #include "headers/Bus.h"
+#include "headers/Cartridge.h"
 
 using namespace std;
 
@@ -12,11 +13,11 @@ cpuLR35902::cpuLR35902()
 	using a = cpuLR35902;
 	lookup =
 	{
-		{"NOP", &a::OP_00, 4},
+		{"NOP", &a::OP_00, 4},{"LD BC,d16", &a::OP_01, 12}
 		
 		/*** OPCODES THAT ARE UNINITIALIZED WILL CAUSE COMPILER ISSUES ***
 	
-		{"LD BC,d16", &a::OP_01, 12},{"LD (BC),A", &a::OP_02, 8},{"INC BC", &a::OP_03, 8},{"INC B", &a::OP_04, 4},{"DEC B", &a::OP_05, 4},{"LD B,d8", &a::OP_06, 8},{"RLCA", &a::OP_07, 4},{"LD (a16), SP", &a::OP_08, 20},{"ADD HL,BC", &a::OP_09, 8},{"LD A,(BC)", &a::OP_0A, 8},{"DEC BC", &a::OP_0B, 8},{"INC C", &a::OP_0C, 4},{"DEC C", &a::OP_0D, 4},{"LD C,d8", &a::OP_0E, 8},{"RRCA", &a::OP_0F, 4},
+		{"LD (BC),A", &a::OP_02, 8},{"INC BC", &a::OP_03, 8},{"INC B", &a::OP_04, 4},{"DEC B", &a::OP_05, 4},{"LD B,d8", &a::OP_06, 8},{"RLCA", &a::OP_07, 4},{"LD (a16), SP", &a::OP_08, 20},{"ADD HL,BC", &a::OP_09, 8},{"LD A,(BC)", &a::OP_0A, 8},{"DEC BC", &a::OP_0B, 8},{"INC C", &a::OP_0C, 4},{"DEC C", &a::OP_0D, 4},{"LD C,d8", &a::OP_0E, 8},{"RRCA", &a::OP_0F, 4},
 		{"STOP", &a::OP_10, 4},{"LD DE,d16", &a::OP_11, 12},{"LD (DE),A", &a::OP_12, 8},{"INC DE", &a::OP_13, 8},{"INC D", &a::OP_14, 4},{"DEC D", &a::OP_15, 4},{"LD D,d8", &a::OP_16, 8},{"RLA", &a::OP_17, 4},{"JR r8", &a::OP_18, 12},{"ADD HL,DE", &a::OP_19, 8},{"LD A,(DE)", &a::OP_1A, 8},{"DEC DE", &a::OP_1B, 8},{"INC E", &a::OP_1C, 4},{"DEC E", &a::OP_1D, 4},{"LD E,d8", &a::OP_1E, 8},{"RRA", &a::OP_1F, 4},
 		{"JR NZ,r8", &a::OP_20, 12/8},{"LD HL,d16", &a::OP_21, 12},{"LD (HL+),A", &a::OP_22, 8},{"INC HL", &a::OP_23, 8},{"INC H", &a::OP_24, 4},{"DEC H", &a::OP_25, 4},{"LD H,d8", &a::OP_26, 8},{"DAA", &a::OP_27, 4},{"JR Z,r8", &a::OP_28, 12/8},{"ADD HL,HL", &a::OP_29, 8},{"LD A,(HL+)", &a::OP_2A, 8},{"DEC HL", &a::OP_2B, 8},{"INC L", &a::OP_2C, 4},{"DEC L", &a::OP_2D, 4},{"LD L,d8", &a::OP_2E, 8},{"CPL", &a::OP_2F, 4},
 		{"JR NC,r8", &a::OP_30, 12/8},{"LD SP,d16", &a::OP_31, 16},{"LD (HL-),A", &a::OP_32, 8},{"INC SP", &a::OP_33, 8},{"INC (HL)", &a::OP_34, 12},{"DEC (HL)", &a::OP_35, 12},{"LD (HL),d8", &a::OP_36, 12},{"SCF", &a::OP_37, 4},{"JR C,r8", &a::OP_38, 12/8},{"ADD HL,SP", &a::OP_39, 8},{"LD A,(HL-)", &a::OP_3A, 8},{"DEC SP", &a::OP_3B, 8},{"INC A", &a::OP_3C, 4},{"DEC A", &a::OP_3D, 4},{"LD A,d8", &a::OP_3E, 8},{"CCF", &a::OP_3F, 4},
@@ -65,6 +66,23 @@ cpuLR35902::cpuLR35902()
 cpuLR35902::~cpuLR35902()
 {
 }
+
+//-o------------------------------------------------------------------o
+// |   GET HL REGISTER                                                 |
+//-o------------------------------------------------------------------o
+uint16_t cpuLR35902::GetRegHL()
+{
+	return hl;
+}
+
+//-o------------------------------------------------------------------o
+// |   SET HL REGISTER                                                 |
+//-o------------------------------------------------------------------o
+void cpuLR35902::SetRegHL(uint16_t val)
+{
+	hl = val;
+}
+
 
 //-o------------------------------------------------------------------o
 // |   GET BC REGISTER                                                 |
@@ -198,8 +216,8 @@ void cpuLR35902::clock()
 	// THE PC (NOT EVERY INSTRUCTION IS 1 BYTE)
 
 	// Just for testing opcodes!!
-	opcode = 0;
-	uint8_t testValue = (this->*cb_lookup[opcode].operate)();
+	opcode = 1;
+	uint8_t testValue = (this->*lookup[opcode].operate)();
 	
 
 }
