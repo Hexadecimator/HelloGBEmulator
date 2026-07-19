@@ -1,3 +1,4 @@
+#pragma once
 /*
 
 ===== INFO =====
@@ -64,16 +65,17 @@ https://gbdev.io/pandocs/
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include "headers/Cartridge.h"
 #include "headers/Bus.h"
+
 
 using namespace std;
 
 class GBEmulator {
 
-    private:
+    public:
 
-        Bus game; 
-        Cartridge cart;
+        Bus game;
 
     public:
 
@@ -86,7 +88,7 @@ class GBEmulator {
 };
 
 int main() {
-    
+
     GBEmulator game;
     game.start();
 
