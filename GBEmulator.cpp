@@ -80,8 +80,16 @@ class GBEmulator {
     public:
 
         void start() {
+            
+            game.cpu.report();
 
-            game.cpu.clock();
+            for (int i = 0; i < 10; i++) {
+
+                cout << "Press Enter to step through";
+                cin.ignore();
+                game.cpu.clock();
+
+            }
             
         }
 

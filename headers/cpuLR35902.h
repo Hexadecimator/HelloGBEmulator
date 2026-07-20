@@ -58,6 +58,7 @@ public:
 	void SetRegA(uint8_t val);
 	void SetRegB(uint8_t val);
 	void SetRegC(uint8_t val);
+	void report();
 
 	//-o------------------------------------------------------------------o
 	// |   CPU SPECIFIC FUNCTIONS                                         |
@@ -158,6 +159,7 @@ public:
 
 	uint8_t OP_00();
 	uint8_t OP_01();
+	uint8_t OP_02();
 	
 	/*** OPCODES THAT ARE UNINITIALIZED WILL CAUSE COMPILER ISSUES ***
 	
