@@ -218,7 +218,10 @@ void cpuLR35902::clock()
 	// This is for testing, index "1" is the second byte of the blue.gb ROM file which is a NOOP instruction.
 	// Eventually the "1" can be replaced with the program counter variable.
 
-	uint8_t testValue = (this->*lookup[bus->cart.romData[1]].operate)(); 
+	pc = 259; // byte 259 is instruction 0x01
+	uint8_t testValue = (this->*lookup[bus->cart.romData[pc]].operate)();
+
+	// JUMP INSTRUCTIONS CAN SET THE PC TO THE 16bit HEX ADDRESS, THEN JUST CONVERT TO INT TO USE AS AN INDeX WHEN ITS CALLED AGAIN <- IMPORTANT DONT FORGET
 
 }
 
