@@ -10,7 +10,7 @@ class Cartridge
 
 		Cartridge();
 		~Cartridge();
-		void go();
-		void getCartridgeType(const int data);
-
+		void loadData();
+		void getCartridgeType(const int data); 
+		uint8_t* romData = NULL;
 };

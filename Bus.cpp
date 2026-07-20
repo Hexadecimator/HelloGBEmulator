@@ -6,7 +6,7 @@
 Bus::Bus()
 {
 	cpu.ConnectBus(this);
-	cart.go();
+	cart.loadData();
 	for (auto& i : wRam) i = 0x00; // clear wram
 	for (auto& i : vRam) i = 0x00; // clear vram
 }

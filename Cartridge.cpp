@@ -12,8 +12,6 @@ using namespace std;
 
 Cartridge::Cartridge()
 {
-    /*
-    */
 
 }
 
@@ -139,7 +137,7 @@ void Cartridge::getCartridgeType(int data)
     }
 }
 
-void Cartridge::go() {
+void Cartridge::loadData() {
 
     const int nameBuffer = 308;
     const int headerAddressCartridgeType = 0x147;
@@ -149,18 +147,22 @@ void Cartridge::go() {
 
     int length = 0;
 
-    ifstream file("C:\\Users\\logan\\Desktop\\blue.gb", ios::in | ios::binary);
+    ifstream file("blue.gb", ios::in | ios::binary);
 
     if (file.is_open())
     {
         size = file.tellg();
+        vector<uint8_t> buffer(istreambuf_iterator<char>(file), {});
 
-        vector<unsigned char> buffer(istreambuf_iterator<char>(file), {});
+        romData = (uint8_t*)malloc(buffer.size()+1);
+        
+        if (romData) {
+            for (int i = 0; i < buffer.size(); i++) {
+                romData[i] = buffer[i];
+                printf("%#X - %d\n", romData[i], i);
+            }
+        }
 
-
-        //for (unsigned char i : buffer) {
-         //   cout << unsigned(i) << " ";
-        // }
         cout << "\nCartridge Type: ";
         getCartridgeType(buffer[headerAddressCartridgeType]);
 
@@ -168,15 +170,14 @@ void Cartridge::go() {
         cout << "\nTitle Name: ";
         for (int i = 0; i < 16; i++) {
             cout << (buffer[nameBuffer + i]);
-        }
-
-
-
+        } 
     }
 
     else cout << "Unable to open file";
 
 }
+
 Cartridge::~Cartridge()
 {
+    free(romData);
 }
