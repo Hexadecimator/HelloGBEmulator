@@ -156,10 +156,11 @@ void Cartridge::loadData() {
 
         romData = (uint8_t*)malloc(buffer.size()+1);
         
-        if (romData) {
+        if (romData) { // Makes sure malloc was successful before trying to write to the address
             for (int i = 0; i < buffer.size(); i++) {
                 romData[i] = buffer[i];
-                printf("%#X - %d\n", romData[i], i);
+                // Debug printing to make sure each byte matches the index
+                // printf("%#X - %d\n", romData[i], i); 
             }
         }
 

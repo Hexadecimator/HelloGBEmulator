@@ -215,10 +215,10 @@ void cpuLR35902::clock()
 	// MAYBE ADD THE BYTE SIZE TO THE OPTABLE SO WE KNOW HOW MUCH WE NEED TO INCREMENT
 	// THE PC (NOT EVERY INSTRUCTION IS 1 BYTE)
 
-	// Just for testing opcodes!!
-	opcode = 1;
-	uint8_t testValue = (this->*lookup[opcode].operate)();
-	
+	// This is for testing, index "1" is the second byte of the blue.gb ROM file which is a NOOP instruction.
+	// Eventually the "1" can be replaced with the program counter variable.
+
+	uint8_t testValue = (this->*lookup[bus->cart.romData[1]].operate)(); 
 
 }
 

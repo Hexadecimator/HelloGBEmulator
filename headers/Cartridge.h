@@ -13,4 +13,5 @@ class Cartridge
 		void loadData();
 		void getCartridgeType(const int data); 
 		uint8_t* romData = NULL;
+
 };
