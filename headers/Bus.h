@@ -23,8 +23,8 @@ public:
 	// |   CONNECTED COMPONENTS	                                          |
 	//-o------------------------------------------------------------------o
 	cpuLR35902 cpu; 
-	//ppu ppu; Uncomment once ppu.h is implemented
 	Cartridge cart;
+	//ppu ppu; Uncomment once ppu.h is implemented
 
 	//-o------------------------------------------------------------------o
 	// |   WRAM/VRAM					                                  |

@@ -48,14 +48,17 @@ public:
 	//-o------------------------------------------------------------------o
 
 	uint16_t GetRegBC();
+	uint16_t GetRegHL();
 	uint8_t GetRegA();
 	uint8_t GetRegB();
 	uint8_t GetRegC();
 
 	void SetRegBC(uint16_t val);
+	void SetRegHL(uint16_t val);
 	void SetRegA(uint8_t val);
 	void SetRegB(uint8_t val);
 	void SetRegC(uint8_t val);
+	void report();
 
 	//-o------------------------------------------------------------------o
 	// |   CPU SPECIFIC FUNCTIONS                                         |
@@ -155,13 +158,17 @@ public:
 	//-o------------------------------------------------------------------o
 
 	uint8_t OP_00();
+	uint8_t OP_01();
+	uint8_t OP_02();
+	uint8_t OP_03();
+	uint8_t OP_04();
 	
 	/*** OPCODES THAT ARE UNINITIALIZED WILL CAUSE COMPILER ISSUES ***
 	
 	uint8_t OP_10(); uint8_t OP_20(); uint8_t OP_30();	uint8_t OP_40(); uint8_t OP_50(); uint8_t OP_60(); uint8_t OP_70();
-	uint8_t OP_01(); uint8_t OP_11(); uint8_t OP_21(); uint8_t OP_31();	uint8_t OP_41(); uint8_t OP_51(); uint8_t OP_61(); uint8_t OP_71();
+	uint8_t OP_11(); uint8_t OP_21(); uint8_t OP_31();	uint8_t OP_41(); uint8_t OP_51(); uint8_t OP_61(); uint8_t OP_71();
 	uint8_t OP_02(); uint8_t OP_12(); uint8_t OP_22(); uint8_t OP_32();	uint8_t OP_42(); uint8_t OP_52(); uint8_t OP_62(); uint8_t OP_72();
-	uint8_t OP_03(); uint8_t OP_13(); uint8_t OP_23(); uint8_t OP_33();	uint8_t OP_43(); uint8_t OP_53(); uint8_t OP_63(); uint8_t OP_73();
+	uint8_t OP_13(); uint8_t OP_23(); uint8_t OP_33();	uint8_t OP_43(); uint8_t OP_53(); uint8_t OP_63(); uint8_t OP_73();
 	uint8_t OP_04(); uint8_t OP_14(); uint8_t OP_24(); uint8_t OP_34();	uint8_t OP_44(); uint8_t OP_54(); uint8_t OP_64(); uint8_t OP_74();
 	uint8_t OP_05(); uint8_t OP_15(); uint8_t OP_25(); uint8_t OP_35();	uint8_t OP_45(); uint8_t OP_55(); uint8_t OP_65(); uint8_t OP_75();
 	uint8_t OP_06(); uint8_t OP_16(); uint8_t OP_26(); uint8_t OP_36();	uint8_t OP_46(); uint8_t OP_56(); uint8_t OP_66(); uint8_t OP_76();

@@ -121,6 +121,7 @@
   <ItemGroup>
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="cpuLR35902.cpp" />
+	<ClCompile Include="Cartridge.cpp" />
     <ClCompile Include="GBEmulator.cpp" />
     <ClCompile Include="OpcodeFunctions.cpp" />
     <ClCompile Include="Opcode_CB_Functions.cpp" />

@@ -1,3 +1,4 @@
+#pragma once
 /*
 
 ===== INFO =====
@@ -64,29 +65,39 @@ https://gbdev.io/pandocs/
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include "headers/Cartridge.h"
 #include "headers/Bus.h"
+
 
 using namespace std;
 
 class GBEmulator {
 
-    private:
+    public:
 
-        Bus game; 
-        Cartridge cart;
+        Bus game;
 
     public:
 
         void start() {
 
-            game.cpu.clock();
+            game.cpu.pc = 1; // Change to chose which instruction to test from
+            game.cpu.report();
+
+            for (int i = 0; i < 10; i++) {
+
+                cout << "\nPress Enter to step through";
+                cin.ignore();
+                game.cpu.clock();
+
+            }
             
         }
 
 };
 
 int main() {
-    
+
     GBEmulator game;
     game.start();
 
