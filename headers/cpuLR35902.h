@@ -161,6 +161,7 @@ public:
 	uint8_t OP_01();
 	uint8_t OP_02();
 	uint8_t OP_03();
+	uint8_t OP_04();
 	
 	/*** OPCODES THAT ARE UNINITIALIZED WILL CAUSE COMPILER ISSUES ***
 	

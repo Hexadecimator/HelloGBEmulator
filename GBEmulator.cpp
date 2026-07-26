@@ -80,12 +80,13 @@ class GBEmulator {
     public:
 
         void start() {
-            
+
+            game.cpu.pc = 1; // Change to chose which instruction to test from
             game.cpu.report();
 
             for (int i = 0; i < 10; i++) {
 
-                cout << "Press Enter to step through";
+                cout << "\nPress Enter to step through";
                 cin.ignore();
                 game.cpu.clock();
 

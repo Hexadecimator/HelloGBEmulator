@@ -2,11 +2,17 @@
 
 #include "headers/Bus.h"
 #include "headers/Cartridge.h"
+using namespace std;
 
 Bus::Bus()
 {
 	cpu.ConnectBus(this);
-	cart.loadData();
+
+	if (!cart.loadData()) {
+		cout << "Unable to open file";
+		exit(EXIT_FAILURE);
+	}
+
 	for (auto& i : wRam) i = 0x00; // clear wram
 	for (auto& i : vRam) i = 0x00; // clear vram
 }

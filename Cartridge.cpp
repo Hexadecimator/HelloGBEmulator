@@ -137,7 +137,7 @@ void Cartridge::getCartridgeType(int data)
     }
 }
 
-void Cartridge::loadData() {
+bool Cartridge::loadData() {
 
     const int nameBuffer = 308;
     const int headerAddressCartridgeType = 0x147;
@@ -146,7 +146,6 @@ void Cartridge::loadData() {
     streampos size;
 
     int length = 0;
-
     ifstream file("blue.gb", ios::in | ios::binary);
 
     if (file.is_open())
@@ -172,9 +171,12 @@ void Cartridge::loadData() {
         for (int i = 0; i < 16; i++) {
             cout << (buffer[nameBuffer + i]);
         } 
+        return true;
     }
 
-    else cout << "Unable to open file";
+    else {
+        return false;
+    }
 
 }
 
