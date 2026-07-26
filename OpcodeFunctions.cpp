@@ -40,15 +40,17 @@ uint8_t cpuLR35902::OP_01()
 uint8_t cpuLR35902::OP_02()
 {
 	bus->cart.romData[GetRegBC()] = GetRegA();
+	pc = pc + 2;
 	return 0;
 }
 
 //-o------------------------------------------------------------------o
-// |   OPCODE: INC BC (0x03)                                       |
+// |   OPCODE: INC BC (0x03)                                          |
 //-o------------------------------------------------------------------o
 uint8_t cpuLR35902::OP_03()
 {
-	// TO DO
+	SetRegBC(-~GetRegBC());
+	pc = pc + 2;
 	return 0;
 }
 
